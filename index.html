@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>gifTASTIC!</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Dog Breeds</h1>
+	
+		<!-- Rendered buttons will get dumped here -->
+		<div class="buttons"></div>
+
+		<form id="dog-form">
+			<label for="breed-input"> Search for a Breed:</label>
+			<input type="text" id="breed-input"><br>
+
+			<!-- button triggers new dog breed to be added -->
+			<input id="add-breed" type="submit" value="submit">
+		</form>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript">
+
+		// my initial buttons array.
+		var dog = ["Labrador", "German Shepherd", "Shih Tzu", "Dalmatian", "Boxer", "Pug", "Poodle", "Chihuahua", "Dachshund", "Chow Chow"];
+		// generic function for capturing the movie name from the data-attribute
+		function alertDogBreed(){
+			var dogBreed = $(this).attr("data-name");
+
+			alert(dogBreed);
+		}
+
+		// function that will create buttons out of my array
+		function renderButtons(){
+
+			$(".buttons").empty();
+			// loops through my list
+			for (var i = 0; i < dog.length; i++) {
+				var a = $("<button>");
+				a.addClass("dog");
+				a.attr("data-name", dog[i]);
+				a.text(dog[i]);
+				$(".buttons").append(a);
+			}
+		}
+		
+
+		// upon clicking the button i need gifs to load on my page of each particular console.log();
+		// upon clicking on the gifs i need them to move
+		$("#add-breed").on("click", function(event) {
+			event.preventDefault();
+
+			// This line grabs the input from the textbox
+			var breed = $("#breed-input").val().trim();
+
+			// Adding the movie from textbox to our array
+			dog.push(breed);
+			console.log(dog);
+
+			// calling renderButtons which handles the processing of our dog array
+			renderButtons();
+		});
+
+		// callint the function alertDogBreed when button is clicked.
+		$(document).on("click", ".dog", alertDogBreed);
+
+		// calling the renderButtons function to display the initial dog buttons
+		renderButtons();
+
+</script>
+</body>
+</html>
