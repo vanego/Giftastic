@@ -1,0 +1,1 @@
+This application allows the user to click on topic buttons and it will generate gifs on the page. The user is also able to add buttons to the page.
